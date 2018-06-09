@@ -22,7 +22,7 @@ node
         echo step-1: Removing the existing package \n
         rm -rf /opt/apache-tomcat-9.0.8/webapps/SH*.war
         echo step2: Stagging the new package to tomcat server.\n
-        cp  target/*.war /opt/apache-tomcat-9.0.8/webapps/
+        cp  ${WORKSPACE}target/*.war /opt/apache-tomcat-9.0.8/webapps/
         '"
     }
     
