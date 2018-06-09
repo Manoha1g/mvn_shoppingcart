@@ -6,11 +6,6 @@ node
     git credentialsId: 'feed9cfb-e1ea-46c3-a172-c107ae7f41f7', url: 'https://github.com/Manoha1g/mvn_shoppingcart.git'
     
     }
-    
-    stage('Code Analysis')
-    {
-        echo 'code is Analysing'
-    }
     stage('Build Test')
     {
        sh '"/opt/maven/apache-maven-3.5.3/bin/mvn" -V test' 
@@ -26,10 +21,9 @@ node
         echo deploy the war to tomcat server.
         echo step-1: Removing the existing package
         rm -rf /opt/apache-tomcat-9.0.8/webapps/SH*.war
-      
-      echo step2: Stagging the new package to tomcat server.
-      cp  target/*.war /opt/apache-tomcat-9.0.8/webapps/
-      '
+        echo step2: Stagging the new package to tomcat server.
+        cp  target/*.war /opt/apache-tomcat-9.0.8/webapps/
+        '
     }
     
 }
