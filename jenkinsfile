@@ -3,7 +3,7 @@ node
 {
     stage('Git')
     {
-    git credentialsId: 'feed9cfb-e1ea-46c3-a172-c107ae7f41f7', url: 'https://github.com/Manoha1g/mvn_shoppingcart.git'
+    git 'https://github.com/Manoha1g/mvn_shoppingcart.git'
     
     }
     stage('Build')
