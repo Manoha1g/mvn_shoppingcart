@@ -1,0 +1,29 @@
+
+node
+{
+    stage('Git')
+    {
+    git credentialsId: 'feed9cfb-e1ea-46c3-a172-c107ae7f41f7', url: 'https://github.com/Manoha1g/mvn_shoppingcart.git'
+    
+    }
+    
+    stage('Code Analysis')
+    {
+        echo 'code is Analysing'
+    }
+    stage('Build Test')
+    {
+       sh '"/opt/maven/apache-maven-3.5.3/bin/mvn" -V test' 
+       
+    }
+    stage('Build')
+    {
+        sh '"/opt/maven/apache-maven-3.5.3/bin/mvn" -V  package'
+    }
+    stage('Deploye')
+    {
+        echo 'Deploy the code'
+    }
+    
+}
+
