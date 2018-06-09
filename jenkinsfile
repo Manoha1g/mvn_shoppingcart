@@ -18,10 +18,10 @@ node
     stage('Deploye to tomcat')
     {
         sh '"
-        echo deploy the war to tomcat server.
-        echo step-1: Removing the existing package
+        echo deploy the war to tomcat server.\n
+        echo step-1: Removing the existing package \n
         rm -rf /opt/apache-tomcat-9.0.8/webapps/SH*.war
-        echo step2: Stagging the new package to tomcat server.
+        echo step2: Stagging the new package to tomcat server.\n
         cp  target/*.war /opt/apache-tomcat-9.0.8/webapps/
         '"
     }
