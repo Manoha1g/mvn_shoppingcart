@@ -13,7 +13,7 @@ node
     }
     stage('Deploy to Tomcat')
     {
-        sshagent(['a35d57d4-ee9c-4e68-b844-8469ac9707cb']) 
+        sshagent(['tomcat-server'])
         {
             sh 'scp target/*.war ec2-user@172.31.24.240:/opt/apache-tomcat-9.0.8/webapps'
         }
