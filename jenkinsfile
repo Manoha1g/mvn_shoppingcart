@@ -10,7 +10,13 @@ node
     {
        def mvnHome =  tool name: 'Maven3.5', type: 'maven'
        sh "${mvnHome}/bin/mvn clean package"
-
+    }
+    stage('Deploy to Tomcat')
+    {
+        sshagent(['a35d57d4-ee9c-4e68-b844-8469ac9707cb']) 
+        {
+            sh 'scp target/*.war ec2-user@172.31.24.240:/opt/apache-tomcat-9.0.8/webapps'
+        }
     }
 }
 
