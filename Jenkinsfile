@@ -9,7 +9,9 @@ pipeline{
 		stage('scm checkout'){
 			steps{
 				script {
+					echo "Cleaning workspace...."
 					shoppingcart-cleanws
+					echo "workspace cleaned...."
 				}
 			}
 		}
