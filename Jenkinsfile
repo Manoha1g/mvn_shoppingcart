@@ -8,7 +8,9 @@ pipeline{
 	stages{
 		stage('scm checkout'){
 			steps{
-				shoppingcart-cleanws
+				script {
+					shoppingcart-cleanws
+				}
 			}
 		}
 	}
