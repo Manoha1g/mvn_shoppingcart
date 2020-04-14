@@ -1,4 +1,4 @@
-@Library('shoppingcart-cleanws@master')_
+@Library('shared-library-ci@master')_
 
 pipeline{
 	agent any
@@ -8,7 +8,9 @@ pipeline{
 	stages{
 		stage('scm checkout'){
 			steps{
-				shoppingcart-cleanws
+				script {
+					shoppingcart-cleanws
+				}
 			}
 		}
 	}
