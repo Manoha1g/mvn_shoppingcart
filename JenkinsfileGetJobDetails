@@ -14,7 +14,9 @@ pipeline {
             //If we want to add more then one job
             def items = new LinkedHashSet();
             def job = Jenkins.instance.getJob(name)
-            items.add(job);items.each { item ->
+            items.add(job);
+
+            items.each { item ->
                 try {
                     def job_data = Jenkins.instance.getItemByFullName(item.fullName)
                     println 'Job: ' + item.fullName
