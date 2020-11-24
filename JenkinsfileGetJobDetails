@@ -10,10 +10,10 @@ pipeline {
       }
       stage ('test-stage') {
          steps {
-            name = "getJobDetailsByName"
+//            name = "getJobDetailsByName"
             //If we want to add more then one job
             def items = new LinkedHashSet();
-            def job = Hudson.instance.getJob(name)
+            def job = Jenkins.instance.getJob(name)
             items.add(job);items.each { item ->
                 try {
                     def job_data = Jenkins.instance.getItemByFullName(item.fullName)
