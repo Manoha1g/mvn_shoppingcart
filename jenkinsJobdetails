@@ -10,6 +10,7 @@ pipeline {
       }
       stage ('test-stage') {
          steps {
+           script {
              def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
                    println(it.fullName)
                   //Check if job had atleast one build done
@@ -49,7 +50,7 @@ pipeline {
                 }
               }
 */
-//           }
+           }
          }
       }
    }
