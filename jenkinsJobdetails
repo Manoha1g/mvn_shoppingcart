@@ -8,17 +8,20 @@ pipeline {
             checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Manoha1g/mvn_shoppingcart.git']]])
          }
       }
-      stage ('test-stage') {
+      stage ('getJobDetails') {
          steps {
            script {
-             def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
+            
+              def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
                    println(it.fullName)
-                  //Check if job had atleast one build done
-                  if ( job_data.getLastBuild() ) {
-                        def last_job_num = job_data.getLastBuild().getNumber()
+              }
+              def items = new LinkedHashSet();
+              def jobs = Hudson.instance.getJob(job_data)
+              //Check if job had atleast one build done
+              if (jobs.getLastBuild()) {
+                        def last_job_num = jobs.getLastBuild().getNumber()
 //                        def upStreamBuild = Jenkins.getInstance().getItemByFullName(item.fullName).getBuildByNumber(last_job_num)
                         println 'LastBuildNumber: ' + last_job_num
-                  }
               }
 //                   println()
 //                   def items = new LinkedHashSet();
