@@ -10,7 +10,33 @@ pipeline {
       }
       stage ('test-stage') {
          steps {
+             def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
+                   println(it.fullName)
+                  //Check if job had atleast one build done
+                  if (job_data.getLastBuild()) {
+                        last_job_num = job_data.getLastBuild().getNumber()
+//                        def upStreamBuild = Jenkins.getInstance().getItemByFullName(item.fullName).getBuildByNumber(last_job_num)
+                        println 'LastBuildNumer: ' + last_job_num
+                  }
+              }
+//                   println()
+//                   def items = new LinkedHashSet();
+//                   def job = Hudson.instance.getJob(name)
+//                   items.add(jobs);
+/**
+             items.each { item ->
+                 try {
+                     def job_data = Jenkins.instance.getItemByFullName(item.fullName)
+                     println 'Job: ' + item.fullName
+                 }
+*/
+/**
             script {
+                 Jenkins.instance.getAllItems(AbstractItem.class).each {
+                     println(it.fullName)
+              };
+*/
+/**
               // Set how old the jobs to list should be (in days)
               def numDaysBack = 30
 
@@ -21,7 +47,8 @@ pipeline {
                 if (build != null && build.getTimeInMillis() < cutOfDate) {
                   println job.getFullName()
                 }
-             }
+              }
+*/
            }
          }
       }
