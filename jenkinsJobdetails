@@ -11,7 +11,7 @@ pipeline {
       stage ('getJobDetails') {
          steps {
            script {
-              curl --silent -u admin:admin@123 http://localhost:8080/view/RelEng/job/jenkinsJobDetails-25-11-2020/api/json
+              curl -u admin:admin@123 http://localhost:8080/view/RelEng/job/jenkinsJobDetails-25-11-2020/api/json
 /**
               echo "welcome to MLG"
               echo "Present working directory ${pwd}"
