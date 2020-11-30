@@ -11,7 +11,7 @@ pipeline {
       stage ('getJobDetails') {
          steps {
            script {
-              echo "${pwd}"
+              echo "$(pwd)"
               echo "Job name, status" > jobsDetails.csv
               def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
 //                   println(it.fullName)
