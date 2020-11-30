@@ -15,6 +15,8 @@ pipeline {
               def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
                    println(it.fullName)
               }
+              println "$job_data"
+/**
               def items = new LinkedHashSet();
               def jobs = Hudson.instance.getJob(job_data)
               //Check if job had atleast one build done
@@ -27,20 +29,20 @@ pipeline {
 //                   def items = new LinkedHashSet();
 //                   def job = Hudson.instance.getJob(name)
 //                   items.add(jobs);
-/**
+Open comment
              items.each { item ->
                  try {
                      def job_data = Jenkins.instance.getItemByFullName(item.fullName)
                      println 'Job: ' + item.fullName
                  }
-*/
-/**
+Close comment
+Open comment
             script {
                  Jenkins.instance.getAllItems(AbstractItem.class).each {
                      println(it.fullName)
               };
-*/
-/**
+close comment
+Open comment
               // Set how old the jobs to list should be (in days)
               def numDaysBack = 30
 
@@ -53,7 +55,7 @@ pipeline {
                 }
               }
 */
-           }
+//           }
          }
       }
    }
