@@ -11,11 +11,13 @@ pipeline {
       stage ('getJobDetails') {
          steps {
            script {
-            
+              echo '$(pwd)'
+              echo "Job name," "status" > jobsDetails.csv
               def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
 //                   println(it.fullName)
+                     echo "$job_data" >> jobsDetails.csv
               }
-              println "$job_data"
+//              println "$job_data"
 /**
               def items = new LinkedHashSet();
               def jobs = Hudson.instance.getJob(job_data)
