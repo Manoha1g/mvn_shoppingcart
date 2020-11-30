@@ -13,7 +13,7 @@ pipeline {
            script {
             
               def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
-                   println(it.fullName)
+//                   println(it.fullName)
               }
               println "$job_data"
 /**
