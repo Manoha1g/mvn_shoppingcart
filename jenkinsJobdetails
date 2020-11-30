@@ -13,11 +13,10 @@ pipeline {
            script {
               echo "welcome to MLG"
               echo "Present working directory ${pwd}"
-//              sh "$(pwd)"
  //             echo "Job name, status" >> jobsDetails.txt
               def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
                    println(it.fullName)
-   //                  echo "$job_data" >> jobsDetails.txt
+                   echo "$job_data" > jobsDetails.txt
               }
 //              println "$job_data"
 /**
