@@ -15,16 +15,19 @@ pipeline {
          steps {
            script {
 //              curl -u admin:admin@123 http://localhost:8080/view/RelEng/job/jenkinsJobDetails-25-11-2020/api/json
-                curl -u ${logins} ${url}
-/**
+//                curl -u ${logins} ${url}
+
               echo "welcome to MLG"
               echo "Present working directory ${pwd}"
-              echo "Job nameStatus" > jobsDetails.txt
+//              echo "Job nameStatus" > jobsDetails.txt
               def job_data = Jenkins.instance.getAllItems(AbstractItem.class).each {
                    println(it.fullName)
                    echo "$job_data" >> jobsDetails.txt
-*/
+
               }
+
+
+
 //              println "$job_data"
 /**
               def items = new LinkedHashSet();

@@ -1,0 +1,63 @@
+
+import hudson.model.ItemGroup
+
+pipeline {
+    agent { label 'master' }
+    stages {
+        stage('Checkout Script') {
+            steps {
+//                    git branch: 'REL-18457', credentialsId: 'ganji-git', url: 'https://mganji@stash.simplivt.local/scm/~mganji/jenkins-jobs-info.git'
+                   checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Manoha1g/mvn_shoppingcart.git']]])
+
+            }
+        }
+        stage('test-stage') {
+            steps {
+               script {
+                 def jenkins = Jenkins.getInstance()
+                 def all_jobs = jenkins.getAllItems()
+//                 def jobs_names = Jenkins.instance.getAllItems()
+//                 println "all jobs: ${all_jobs}"
+                 for (job in all_jobs) {
+//                    echo "${job_data}"
+                   def job_data = Jenkins.instance.getItemByFullName(job.fullName)
+                   echo "Printing job name: ${job_data}"
+                   //Check if job had atleast one build done
+                   if (job_data.getLastBuild()) {
+                       last_job_num = job_data.getLastBuild().getNumber()
+                       def upStreamBuild = Jenkins.getInstance().getItemByFullName(item.fullName).getBuildByNumber(last_job_num)
+           
+                       println 'LastBuildNumer: ' + last_job_num
+                       println "LastBuildTime: ${upStreamBuild.getTime()}"
+                       println 'LastBuildCause: ' + findCause(upStreamBuild)
+           
+                       //Check if job had atleast one successful build
+                       if (job_data.getLastSuccessfulBuild()) {
+                           println 'LastSuccessNumber: ' + job_data.getLastSuccessfulBuild().getNumber()
+                           println 'LastSuccessResult: ' + job_data.getLastSuccessfulBuild().result
+                       } else {
+                           println 'LastSuccessNumber: Null'
+                           println 'LastSuccessResult: Null'
+                       }
+                    } else {
+                        println 'LastBuildNumer: Null'
+                    }
+                 }
+                   
+
+
+//                 def jenkins_url = http://jenkins-stage01.hcilabs.hpecorp.net/api/json
+//                 r = jenkins_url.getAllItems
+//                 println "results: ${r}"
+
+
+//                 println "resulting jenkins jobs: ${jobs_names}"
+
+//                  Jenkins.instance.getAllItems(AbstractItem.class).each {
+//                      println(it.fullName)
+//                  };
+               }
+            }
+        }
+    }
+}
