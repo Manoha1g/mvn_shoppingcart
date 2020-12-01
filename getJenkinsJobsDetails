@@ -25,7 +25,7 @@ pipeline {
                    //Check if job had atleast one build done
                    if (job_data.getLastBuild()) {
                        last_job_num = job_data.getLastBuild().getNumber()
-                       def upStreamBuild = Jenkins.getInstance().getItemByFullName(item.fullName).getBuildByNumber(last_job_num)
+                       def upStreamBuild = Jenkins.getInstance().getItemByFullName(job_data.fullName).getBuildByNumber(last_job_num)
            
                        println 'LastBuildNumer: ' + last_job_num
                        println "LastBuildTime: ${upStreamBuild.getTime()}"
