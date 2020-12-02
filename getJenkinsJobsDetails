@@ -1,7 +1,7 @@
-import hudson.maven.*
+// import hudson.maven.*
 import hudson.model.ItemGroup
-import hudson.maven.reporters.*
-import hudson.plugins.emailext.*
+// import hudson.maven.reporters.*
+// import hudson.plugins.emailext.*
 
 pipeline {
     agent { label 'master' }
@@ -9,7 +9,6 @@ pipeline {
         stage('Checkout Script') {
             steps {
                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Manoha1g/mvn_shoppingcart.git']]])
-
             }
         }
         stage('test-stage') {
@@ -22,7 +21,7 @@ pipeline {
                  for (job in all_jobs) {
 //                    echo "${job_data}"
                    def job_data = Jenkins.instance.getItemByFullName(job.fullName)
-                   echo "Printing job name: ${job_data}"
+//                   echo "Printing job name: ${job_data}"
                    //Check if job had atleast one build done
                    if (job_data.getLastBuild()) {
                        last_job_num = job_data.getLastBuild().getNumber()
@@ -41,6 +40,7 @@ pipeline {
                     } else {
                         println 'LastBuildNumer: Null'
                     }
+/**
                     if(!(job_data instanceof ExternalJob)) {
                         if(job_data instanceof MavenModuleSet) {
                             for(reporter in job_data.reporters) {
@@ -71,6 +71,7 @@ pipeline {
                             }
                         }
                     }
+*/
                  }
                    
 
