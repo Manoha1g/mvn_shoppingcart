@@ -1,6 +1,7 @@
 import hudson.maven.*
 import hudson.model.ItemGroup
 import hudson.maven.reporters.*
+import hudson.plugins.emailext.*
 
 pipeline {
     agent { label 'master' }
