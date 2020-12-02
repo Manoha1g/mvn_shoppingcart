@@ -1,4 +1,3 @@
-
 import hudson.model.ItemGroup
 
 pipeline {
@@ -6,7 +5,6 @@ pipeline {
     stages {
         stage('Checkout Script') {
             steps {
-//                    git branch: 'REL-18457', credentialsId: 'ganji-git', url: 'https://mganji@stash.simplivt.local/scm/~mganji/jenkins-jobs-info.git'
                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Manoha1g/mvn_shoppingcart.git']]])
 
             }
@@ -29,7 +27,7 @@ pipeline {
            
                        println 'LastBuildNumer: ' + last_job_num
                        println "LastBuildTime: ${upStreamBuild.getTime()}"
-                       println 'LastBuildCause: ' + findCause(upStreamBuild)
+//                       println 'LastBuildCause: ' + findCause(upStreamBuild)
            
                        //Check if job had atleast one successful build
                        if (job_data.getLastSuccessfulBuild()) {
