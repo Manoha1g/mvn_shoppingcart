@@ -21,7 +21,7 @@ pipeline {
                  for (job in all_jobs) {
 //                    echo "${job_data}"
                    def job_data = Jenkins.instance.getItemByFullName(job.fullName)
-//                   echo "Printing job name: ${job_data}"
+                   echo "Printing job name: ${job_data}"
                    //Check if job had atleast one build done
                    if (job_data.getLastBuild()) {
                        last_job_num = job_data.getLastBuild().getNumber()
