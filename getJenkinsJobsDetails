@@ -1,4 +1,5 @@
 import hudson.model.ItemGroup
+import hudson.maven.reporters.*
 
 pipeline {
     agent { label 'master' }
