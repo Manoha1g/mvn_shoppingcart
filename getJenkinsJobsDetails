@@ -38,9 +38,9 @@ pipeline {
                     } else {
                         println 'LastBuildNumer: Null'
                     }
-                    if(!(item instanceof ExternalJob)) {
-                        if(item instanceof MavenModuleSet) {
-                            for(reporter in item.reporters) {
+                    if(!(job_data instanceof ExternalJob)) {
+                        if(job_data instanceof MavenModuleSet) {
+                            for(reporter in job_data.reporters) {
                                 if(reporter instanceof MavenMailer) {
                                     if(reporter.recipients) {
                                         println 'recipients: ' + reporter.recipients
@@ -51,7 +51,7 @@ pipeline {
                             }
                         }
             
-                        for(publisher in item.publishersList) {
+                        for(publisher in job_data.publishersList) {
                             if(publisher instanceof Mailer) {
                                 if(publisher.recipients) {
                                     println  'recipients: ' + publisher.recipients
