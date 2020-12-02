@@ -32,10 +32,8 @@ pipeline {
                        //Check if job had atleast one successful build
                        if (job_data.getLastSuccessfulBuild()) {
                            println 'LastSuccessNumber: ' + job_data.getLastSuccessfulBuild().getNumber()
-                           println 'LastSuccessResult: ' + job_data.getLastSuccessfulBuild().result
                        } else {
                            println 'LastSuccessNumber: Null'
-                           println 'LastSuccessResult: Null'
                        }
                     } else {
                         println 'LastBuildNumer: Null'
