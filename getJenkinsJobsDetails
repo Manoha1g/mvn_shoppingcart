@@ -72,7 +72,39 @@ pipeline {
                         }
                     }
 */
-                 }
+                  def findCause(upStreamBuild) {
+                      //Check if the build was triggered by SCM change
+                      scmCause = upStreamBuild.getCause(hudson.triggers.SCMTrigger.SCMTriggerCause)
+                      if (scmCause != null) {
+                           return scmCause.getShortDescription()
+                      }
+    
+                      //Check if the build was triggered by timer
+                      timerCause = upStreamBuild.getCause(hudson.triggers.TimerTrigger.TimerTriggerCause)
+                      if (timerCause != null) {
+                          return timerCause.getShortDescription()
+                      }
+    
+                      //Check if the build was triggered by some jenkins user
+                      usercause = upStreamBuild.getCause(hudson.model.Cause.UserIdCause.class)
+                      if (usercause != null) {
+                          return usercause.getUserId()
+                      }
+    
+                      //Check if the build was triggered by some jenkins project(job)
+                      upstreamcause = upStreamBuild.getCause(hudson.model.Cause.UpstreamCause.class)
+                      if (upstreamcause != null) {
+                          job = Jenkins.getInstance().getItemByFullName(upstreamcause.getUpstreamProject(), hudson.model.Job.class)
+                          if (job != null) {
+                              upstream = job.getBuildByNumber(upstreamcause.getUpstreamBuild())
+                              if (upstream != null) {
+                                  return upstream
+                              }
+                      }
+                  }
+                  return;
+                  }  
+                }
                    
 
 
