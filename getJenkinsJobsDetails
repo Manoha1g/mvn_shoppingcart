@@ -38,6 +38,36 @@ pipeline {
                     } else {
                         println 'LastBuildNumer: Null'
                     }
+                    if(!(item instanceof ExternalJob)) {
+                        if(item instanceof MavenModuleSet) {
+                            for(reporter in item.reporters) {
+                                if(reporter instanceof MavenMailer) {
+                                    if(reporter.recipients) {
+                                        println 'recipients: ' + reporter.recipients
+                                    } else {
+                                        println 'recipients: Null'
+                                    }
+                                }
+                            }
+                        }
+            
+                        for(publisher in item.publishersList) {
+                            if(publisher instanceof Mailer) {
+                                if(publisher.recipients) {
+                                    println  'recipients: ' + publisher.recipients
+                                } else {
+                                    println 'recipients: Null'
+                                }
+                            }
+                            else if(publisher instanceof ExtendedEmailPublisher) {
+                                if(publisher.recipientList) {
+                                    println  'recipients: ' + publisher.recipientList
+                                } else {
+                                    println 'recipients: Null'
+                                }
+                            }
+                        }
+                    }
                  }
                    
 
